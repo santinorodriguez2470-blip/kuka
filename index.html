@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Modo Caos</title>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  background:black;
+  font-family:Arial;
+}
+
+.frase{
+  position:absolute;
+  color:lime;
+  font-size:20px;
+  pointer-events:none;
+  animation:fade 2s forwards;
+}
+
+@keyframes fade{
+  0% {opacity:1; transform:translateY(0);}
+  70% {opacity:0; transform:translateY(-20px);}
+}
+</style>
+</head>
+
+<body>
+
+<script>
+const frases = [
+  "kuka",
+
+];
+
+// cada movimiento del mouse
+document.addEventListener("mousemove", (e)=>{
+  const texto = document.createElement("div");
+  texto.className = "frase";
+
+  // frase random
+  texto.innerText = frases[Math.floor(Math.random()*frases.length)];
+
+  // posición
+  texto.style.left = e.clientX + "px";
+  texto.style.top = e.clientY + "px";
+
+  document.body.appendChild(texto);
+
+  // eliminar después de animación
+  setTimeout(()=>{
+    texto.remove();
+  },2000);
+});
+</script>
+
+</body>
+</html>
